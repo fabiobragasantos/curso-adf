@@ -1,2 +1,1 @@
-# curso-adf
-Curso Azure Data Factory para Iniciantes do Luiz Santana. 
+Código do Azure Data Factory do curso do Luiz Santana. 
