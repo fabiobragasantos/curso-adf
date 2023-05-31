@@ -28,6 +28,10 @@
 					"value": "@concat(dataset().p_arquivo,'.parquet')",
 					"type": "Expression"
 				},
+				"folderPath": {
+					"value": "@dataset().p_diretorio",
+					"type": "Expression"
+				},
 				"fileSystem": {
 					"value": "@dataset().p_container",
 					"type": "Expression"
