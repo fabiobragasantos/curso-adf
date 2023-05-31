@@ -863,6 +863,84 @@
 				"[concat(variables('factoryId'), '/datasets/ds_sql_azure')]",
 				"[concat(variables('factoryId'), '/datasets/ds_parquet_dls')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pratica_04')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Exec pratica_01",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "pratica_01",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {}
+						}
+					},
+					{
+						"name": "Exec pratica_02",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Exec pratica_01",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "pratica_02",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {}
+						}
+					},
+					{
+						"name": "Exec pratica_03",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Exec pratica_02",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "pratica_03",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"folder": {
+					"name": "hands_on_01"
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/pratica_01')]",
+				"[concat(variables('factoryId'), '/pipelines/pratica_02')]",
+				"[concat(variables('factoryId'), '/pipelines/pratica_03')]"
+			]
 		}
 	]
 }
