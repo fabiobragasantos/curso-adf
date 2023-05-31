@@ -1,0 +1,47 @@
+{
+	"name": "ds_Json_dls",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_datalake",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"p_container": {
+				"type": "string",
+				"defaultValue": "transient"
+			},
+			"p_diretorio": {
+				"type": "string",
+				"defaultValue": "diversos"
+			},
+			"p_arquivo": {
+				"type": "string",
+				"defaultValue": "jsonproduto.json"
+			}
+		},
+		"folder": {
+			"name": "Azure Storage Account"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().p_arquivo",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().p_diretorio",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().p_container",
+					"type": "Expression"
+				}
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

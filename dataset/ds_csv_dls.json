@@ -1,0 +1,58 @@
+{
+	"name": "ds_csv_dls",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_datalake",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"p_container": {
+				"type": "string",
+				"defaultValue": "transient"
+			},
+			"p_diretorio": {
+				"type": "string",
+				"defaultValue": "diversos"
+			},
+			"p_arquivo": {
+				"type": "string",
+				"defaultValue": "cidades.csv"
+			},
+			"p_delimitador": {
+				"type": "string",
+				"defaultValue": ";"
+			}
+		},
+		"folder": {
+			"name": "Azure Storage Account"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().p_arquivo",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().p_diretorio",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().p_container",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": {
+				"value": "@dataset().p_delimitador",
+				"type": "Expression"
+			},
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

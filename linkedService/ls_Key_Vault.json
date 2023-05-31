@@ -1,0 +1,12 @@
+{
+	"name": "ls_Key_Vault",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": "Buscar chaves no Key Vault.",
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://kv-bootcamp-prd-fbs.vault.azure.net/"
+		}
+	}
+}

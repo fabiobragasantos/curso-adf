@@ -1,0 +1,19 @@
+{
+	"name": "ls_SqlDatabase",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=sql-bootcamp-prd-fbs.database.windows.net;Initial Catalog=sqldb-bootcamp-prd-fbs;User ID=usr-bootcamp-prd-fbs",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "ls_Key_Vault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "secret-sql-bootcamp-prd"
+			}
+		}
+	}
+}
