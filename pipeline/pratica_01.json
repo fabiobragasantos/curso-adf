@@ -1,0 +1,82 @@
+{
+	"name": "pratica_01",
+	"properties": {
+		"activities": [
+			{
+				"name": "ler csvs",
+				"type": "GetMetadata",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "ds_csv_dls",
+						"type": "DatasetReference",
+						"parameters": {
+							"p_container": "transient",
+							"p_diretorio": "diversos",
+							"p_arquivo": "*.csv",
+							"p_delimitador": "*"
+						}
+					},
+					"fieldList": [
+						"childItems"
+					],
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"enablePartitionDiscovery": false
+					},
+					"formatSettings": {
+						"type": "DelimitedTextReadSettings"
+					}
+				}
+			},
+			{
+				"name": "Filtrar moviesDB",
+				"type": "Filter",
+				"dependsOn": [
+					{
+						"activity": "ler csvs",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('ler csvs').output.childItems",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@not(equals(item().name,'moviesDB.csv'))",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Filtrar moviesDB",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": []
+			}
+		],
+		"folder": {
+			"name": "hands_on_01"
+		},
+		"annotations": []
+	}
+}
