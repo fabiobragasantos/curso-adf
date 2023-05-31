@@ -814,7 +814,7 @@
 											"type": "DatasetReference",
 											"parameters": {
 												"p_container": "raw",
-												"p_diretorio": "parquet_table_SQL",
+												"p_diretorio": "parquet\\TABLE_SQL",
 												"p_arquivo": {
 													"value": "@item().TABLE_NAME",
 													"type": "Expression"
