@@ -484,7 +484,7 @@
 					"cancelAfter": {}
 				},
 				"folder": {
-					"name": "hands_on_01"
+					"name": "hands_on"
 				},
 				"annotations": []
 			},
@@ -714,7 +714,7 @@
 					"cancelAfter": {}
 				},
 				"folder": {
-					"name": "hands_on_01"
+					"name": "hands_on"
 				},
 				"annotations": []
 			},
@@ -855,7 +855,7 @@
 					"cancelAfter": {}
 				},
 				"folder": {
-					"name": "hands_on_01"
+					"name": "hands_on"
 				},
 				"annotations": []
 			},
@@ -932,7 +932,7 @@
 					"cancelAfter": {}
 				},
 				"folder": {
-					"name": "hands_on_01"
+					"name": "hands_on"
 				},
 				"annotations": []
 			},
